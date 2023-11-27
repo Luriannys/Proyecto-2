@@ -59,8 +59,8 @@ public class Proyecto2 {
         tabla.buscar(b.getUsuario());
         tabla.insertar(a);
    
-       
-
+         
+     
     }
     
 }
