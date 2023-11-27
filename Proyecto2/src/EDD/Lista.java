@@ -4,8 +4,6 @@
  */
 package EDD;
 
-import javax.swing.JOptionPane;
-
 /**
  *
  * @author Luriannys Junco
@@ -88,27 +86,6 @@ public class Lista {
     }
 
     /**
-     * Metodo que elimina un elemento de la lista
-     * @param name 
-     */
-    public void remove(String name) {
-        if (!this.isEmpty()) {
-            Nodo nodo = this.getpFirst();
-            for (int i = 0; i < this.getSize(); i++) {
-                User data = (User) nodo.getElement();
-                String nameObject = data.getUsuario();
-                if (nameObject.equals(name)) {
-                    Nodo newNodoactual = nodo.getpNext();
-                    nodo = null;
-                    size--;
-                }
-            }
-        } else{
-            JOptionPane.showMessageDialog(null,"La lista esta vacia");
-        }
-    }
-
-    /**
      * Metodo que imprime cada nodo de la lista
      */
     public void print() {
@@ -144,10 +121,9 @@ public class Lista {
         }
         return str;
     }
-
-    /**
-     * @return pFirst
-     */
+        /**
+         * @return pFirst
+         */
     public Nodo getpFirst() {
         return pFirst;
     }

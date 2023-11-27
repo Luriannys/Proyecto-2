@@ -308,4 +308,15 @@ public class Document {
         Document n2 = q;
         return this.priority >= n2.getPriority();
     }
+     
+    public int nodosCompletos(Document n){
+        if(n==null)
+            return 0;
+        else {
+            if (n.getIzquierda()!= null && n.getDerecha()!= null){
+                return nodosCompletos(n.getIzquierda())+ nodosCompletos(n.getDerecha())+1;
+            }
+            return nodosCompletos(n.getIzquierda())+ nodosCompletos(n.getDerecha());      
+        }
+    }
 }

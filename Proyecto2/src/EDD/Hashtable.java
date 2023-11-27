@@ -23,10 +23,6 @@ public class Hashtable {
         }
         this.factorCarga = 0.0;
     }
-
-    
-    
-    
         
     public int index(String clave){
         int i=0,p;
@@ -74,8 +70,7 @@ public class Hashtable {
     public void eliminar(String clave){
         int posicion;
         posicion= index(clave);
-        
-        
+        this.tabla[posicion]=null;
     }
        
     public static int getTamanio() {
