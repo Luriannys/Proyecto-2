@@ -10,8 +10,6 @@ import EDD.User;
 import java.io.File;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Vector;
-import javax.swing.ComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -116,9 +114,14 @@ public class MainMenu extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tableUsers);
 
-        Usuarios.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 490, 160));
+        Usuarios.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 490, 280));
 
         deleteUser.setText("Eliminar Usuario");
+        deleteUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteUserActionPerformed(evt);
+            }
+        });
         Usuarios.add(deleteUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 330, -1, -1));
 
         addUser.setText("Agregar Usuario");
@@ -189,9 +192,9 @@ public class MainMenu extends javax.swing.JFrame {
 
     public void updateTable() {
         String ids[] = {"Usuarios", "Prioridad", "Documentos"};
+        table.setRowCount(0);
         table.setColumnIdentifiers(ids);
         tableUsers.setModel(table);
-        tableUsers.setEnabled(false);
         if (carga != null) {
             String info[] = new String[carga.getSize()];
             Nodo nodo;
@@ -218,18 +221,39 @@ public class MainMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_verArbolActionPerformed
 
     private void addUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addUserActionPerformed
+//        AddUser v = new AddUser();
+//        v.setVisible(true);
         String nameUser = JOptionPane.showInputDialog("Nombre de usuario: ");
-        String [] priorities = {"prioridad_alta", "prioridad_media", "prioridad_baja"};
-        JComboBox election = new JComboBox();
-        election.addItem(priorities);
-        String priorityUser = JOptionPane.showInputDialog(election, "Prioridad: ");
-        carga.addAtTheEnd(new Nodo(User(nameUser, priorityUser)));
-        
+
+        JComboBox combo = new JComboBox();
+        combo.setEditable(true);
+        combo.addItem("prioridad_alta");
+        combo.addItem("prioridad_media");
+        combo.addItem("prioridad_baja");
+        Object selection = JOptionPane.showInputDialog(null, "Seleccione una opción", "Selector de opciones", JOptionPane.QUESTION_MESSAGE, null, new Object[]{"prioridad_alta", "prioridad_media", "prioridad_baja"}, "prioridad_alta");
+        User user = new User(nameUser, (String) selection);
+        Nodo newNodo = new Nodo(user);
+        carga.addAtTheEnd(newNodo);
+        this.updateTable();
+
     }//GEN-LAST:event_addUserActionPerformed
 
-    public Lista getCarga(){
+    private void deleteUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteUserActionPerformed
+        table.removeRow(tableUsers.getSelectedRow());
+        String value = (String) tableUsers.getValueAt(tableUsers.getSelectedRow(), 0);
+        Nodo nodo = carga.getpFirst();
+        for (int i = 0; i < carga.getSize(); i++){
+            User user = (User) nodo.getElement();
+            if (user.getUsuario().equals(value)){
+                carga.remove(value);
+            }
+        }
+    }//GEN-LAST:event_deleteUserActionPerformed
+
+    public Lista getCarga() {
         return carga;
     }
+
     /**
      * @param args the command line arguments
      */
