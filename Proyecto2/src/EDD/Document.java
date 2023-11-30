@@ -267,9 +267,6 @@ public class Document {
             return existe(doc.getIzquierda(), doc);
         }
     }
-    
-
-
     /**
      * @return the priority
      */
