@@ -81,7 +81,8 @@ public class MainMenu extends javax.swing.JFrame {
         deleteUser = new javax.swing.JButton();
         addUser = new javax.swing.JButton();
         ColaImpresion = new javax.swing.JPanel();
-        verArbol = new javax.swing.JButton();
+        verCola = new javax.swing.JButton();
+        verArbol1 = new javax.swing.JButton();
         tagWatch = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -147,13 +148,21 @@ public class MainMenu extends javax.swing.JFrame {
         ColaImpresion.setBackground(new java.awt.Color(94, 105, 116));
         ColaImpresion.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        verArbol.setText("Ver Arbol");
-        verArbol.addActionListener(new java.awt.event.ActionListener() {
+        verCola.setText("Ver Cola");
+        verCola.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                verArbolActionPerformed(evt);
+                verColaActionPerformed(evt);
             }
         });
-        ColaImpresion.add(verArbol, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 400, -1, -1));
+        ColaImpresion.add(verCola, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 400, -1, -1));
+
+        verArbol1.setText("Ver Arbol");
+        verArbol1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                verArbol1ActionPerformed(evt);
+            }
+        });
+        ColaImpresion.add(verArbol1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 400, -1, -1));
 
         jTabbedPane1.addTab("Cola de impresion", ColaImpresion);
 
@@ -252,12 +261,12 @@ public class MainMenu extends javax.swing.JFrame {
      *
      * @param evt
      */
-    private void verArbolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verArbolActionPerformed
+    private void verColaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verColaActionPerformed
         Lienzo lien=new Lienzo();
         JFrame vent=new JFrame();
         ArbolTDA arbolito= new ArbolTDA();
         Controlador contrl=new Controlador(lien,arbolito);
-        Cola col=new Cola();
+        
         
         
         Document doc = new Document("R",10,"Alta");
@@ -267,8 +276,7 @@ public class MainMenu extends javax.swing.JFrame {
         Document doc4 = new Document("d",6,"Alta");
         Document doc5 = new Document("e",17,"Alta");
         
-        col.queue(doc5);
-        col.queue(doc);
+       
         
         arbolito.setNodoRaiz(doc);
         arbolito.getNodoRaiz().insertar(doc1);
@@ -281,7 +289,7 @@ public class MainMenu extends javax.swing.JFrame {
         vent.setDefaultCloseOperation(3);
         vent.setSize(600, 600);
         vent.setVisible(true);
-    }//GEN-LAST:event_verArbolActionPerformed
+    }//GEN-LAST:event_verColaActionPerformed
 
     /**
      * Boton "Agregar Usuario"
@@ -313,6 +321,10 @@ public class MainMenu extends javax.swing.JFrame {
             nodo = nodo.getpNext();
         }
     }//GEN-LAST:event_deleteUserActionPerformed
+
+    private void verArbol1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verArbol1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_verArbol1ActionPerformed
 
     /**
      * getCarga
@@ -386,6 +398,7 @@ public class MainMenu extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable tableUsers;
     private javax.swing.JLabel tagWatch;
-    private javax.swing.JButton verArbol;
+    private javax.swing.JButton verArbol1;
+    private javax.swing.JButton verCola;
     // End of variables declaration//GEN-END:variables
 }
