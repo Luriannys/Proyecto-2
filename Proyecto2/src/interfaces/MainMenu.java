@@ -197,7 +197,7 @@ public class MainMenu extends javax.swing.JFrame {
             if (!carga.isEmpty()) {
                 nodo = carga.getpFirst();
                 for (int i = 0; i < carga.getSize(); i++) {
-                    data.addAtTheStart(nodo);
+                    data.addAtTheEnd(nodo);
                     nodo = nodo.getpNext();
                 }
             }
@@ -280,36 +280,26 @@ public class MainMenu extends javax.swing.JFrame {
             }
             nodo = nodo.getpNext();
         }
-   
-
-//table.removeRow(tableUsers.getSelectedRow());
-//        String value = (String) tableUsers.getValueAt(tableUsers.getSelectedRow(), 0);
-//        Nodo nodo = data.getpFirst();
-//        for (int i = 0; i < data.getSize(); i++){
-//            User user = (User) nodo.getElement();
-//            if (user.getUsuario().equals(value)){
-//                data.remove(value);
-//            }
-//        }
     }//GEN-LAST:event_deleteUserActionPerformed
 
-/**
- * getCarga
- *
- * @return carga
- */
-public Lista getCarga() {
+    /**
+     * getCarga
+     *
+     * @return carga
+     */
+    public Lista getCarga() {
         return carga;
     }
 
     /**
      * getData
+     *
      * @return data
      */
-    public Lista getData(){
+    public Lista getData() {
         return data;
     }
-    
+
     /**
      * @param args the command line arguments
      */
@@ -325,27 +315,23 @@ public Lista getCarga() {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
 
-}
+                }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MainMenu.class  
+            java.util.logging.Logger.getLogger(MainMenu.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(MainMenu.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
-} catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MainMenu.class  
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(MainMenu.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-
-} catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MainMenu.class  
-
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-
-} catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MainMenu.class  
-
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(MainMenu.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
