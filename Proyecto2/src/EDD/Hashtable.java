@@ -15,6 +15,9 @@ public class Hashtable {
     private User [] tabla;
     private double factorCarga;
 
+    /**
+     * Constructor
+     */
     public Hashtable() {
         this.numElem = 0;
         this.tabla = new User[tamanio];
@@ -24,6 +27,11 @@ public class Hashtable {
         this.factorCarga = 0.0;
     }
         
+    /**
+     * Index
+     * @param clave
+     * @return 
+     */
     public int index(String clave){
         int i=0,p;
         int d;
@@ -43,11 +51,20 @@ public class Hashtable {
         return d;
     }
     
+    /**
+     * Hash
+     * @param k
+     * @return 
+     */
     private int hash(int k){
         int key=k%tamanio;
         return key;
     }
     
+    /**
+     * Insertar
+     * @param r 
+     */
     public void insertar(User r){
         int posicion;
         posicion=index(r.getUsuario());
@@ -59,6 +76,11 @@ public class Hashtable {
         }
     }
         
+    /**
+     * Buscar
+     * @param clave
+     * @return 
+     */
     public User buscar(String clave){
         User pr;
         int posicion;
@@ -67,36 +89,68 @@ public class Hashtable {
         return pr;
     }
     
+    /**
+     * Eliminar
+     * @param clave 
+     */
     public void eliminar(String clave){
         int posicion;
         posicion= index(clave);
         this.tabla[posicion]=null;
     }
        
+    /**
+     * getTamanio
+     * @return 
+     */
     public static int getTamanio() {
         return tamanio;
     }
 
+    /**
+     * getNumElem
+     * @return 
+     */
     public int getNumElem() {
         return numElem;
     }
 
+    /**
+     * setNumElem
+     * @param numElem 
+     */
     public void setNumElem(int numElem) {
         this.numElem = numElem;
     }
 
+    /**
+     * getTabla
+     * @return 
+     */
     public User[] getTabla() {
         return tabla;
     }
 
+    /**
+     * setTabla
+     * @param tabla 
+     */
     public void setTabla(User[] tabla) {
         this.tabla = tabla;
     }
 
+    /**
+     * getFactorCarga
+     * @return 
+     */
     public double getFactorCarga() {
         return factorCarga;
     }
 
+    /**
+     * setFactorCarga
+     * @param factorCarga 
+     */
     public void setFactorCarga(double factorCarga) {
         this.factorCarga = factorCarga;
     }

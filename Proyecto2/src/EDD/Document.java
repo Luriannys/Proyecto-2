@@ -12,7 +12,7 @@ public class Document {
 
     private String name;
     private int size;
-    private String type; //Posiblemente un int
+    private String type;
     private boolean status;
     private Document derecha;
     private Document izquierda;
@@ -39,10 +39,10 @@ public class Document {
         this.izquierda = null;
         this.fe = 0;
         this.priority = priority;
-        this.pNext=null;
-        this.head=null;
-        this.tail=null;
-        
+        this.pNext = null;
+        this.head = null;
+        this.tail = null;
+
     }
 
     /**
@@ -62,19 +62,6 @@ public class Document {
         this.fe = 0;
         this.priority = 1.0;
     }
-
-    /**
-     * Constructor (por si acaso)
-     *
-     * @param name
-     * @param size
-     */
-    //    public Document(String name, int size) {
-    //         this.name = name;
-    //        this.size = size;
-    //        this.type = "";
-    //        this.status = false; //No esta en la cola de impresion
-    //    }
 
     /**
      * getName
@@ -146,37 +133,77 @@ public class Document {
         this.status = status;
     }
 
+    /**
+     * getDerecha
+     *
+     * @return
+     */
     public Document getDerecha() {
         return derecha;
     }
 
+    /**
+     * setDerecha
+     *
+     * @param derecha
+     */
     public void setDerecha(Document derecha) {
         this.derecha = derecha;
     }
 
+    /**
+     * getIzquierda
+     *
+     * @return
+     */
     public Document getIzquierda() {
         return izquierda;
     }
 
+    /**
+     * setIzquierda
+     *
+     * @param izquierda
+     */
     public void setIzquierda(Document izquierda) {
         this.izquierda = izquierda;
     }
 
+    /**
+     * getFe
+     *
+     * @return
+     */
     public int getFe() {
         return fe;
     }
 
+    /**
+     * setFe
+     *
+     * @param fe
+     */
     public void setFe(int fe) {
         this.fe = fe;
     }
 
+    /**
+     * imprimirDoc
+     *
+     * @param doc
+     */
     public void imprimirDoc(Document doc) {
         if (doc != null) {
             System.out.println(doc.size);
         }
-
     }
 
+    /**
+     * getFe
+     *
+     * @param doc
+     * @return
+     */
     public int obtenerFe(Document doc) {
         if (doc == null) {
             return 0;
@@ -185,10 +212,21 @@ public class Document {
         }
     }
 
+    /**
+     * altura
+     *
+     * @param n
+     * @return
+     */
     public int altura(Document n) {
         return (Math.max(obtenerFe(n.getIzquierda()), obtenerFe(n.getDerecha())) + 1);
     }
 
+    /**
+     * alturaIzq
+     *
+     * @return
+     */
     public int alturaIzq() {
         if (izquierda == null) {
             return 0;
@@ -196,6 +234,11 @@ public class Document {
         return izquierda.getFe();
     }
 
+    /**
+     * alturaDer
+     *
+     * @return
+     */
     public int alturaDer() {
         if (derecha == null) {
             return 0;
@@ -203,6 +246,11 @@ public class Document {
         return derecha.getFe();
     }
 
+    /**
+     * rotacionIzquierda
+     *
+     * @param n
+     */
     public void rotacionIzquierda(Document n) {
         Document aux = new Document(n.getName(), n.getSize(), n.getType());
         aux.setIzquierda(n.getIzquierda());
@@ -213,6 +261,11 @@ public class Document {
 
     }
 
+    /**
+     * rotacionDerecha
+     *
+     * @param n
+     */
     public void rotacionDerecha(Document n) {
         Document aux = new Document(n.getName(), n.getSize(), n.getType());
         aux.setDerecha(n.getDerecha());
@@ -223,6 +276,12 @@ public class Document {
 
     }
 
+    /**
+     * insertar
+     *
+     * @param doc
+     * @return
+     */
     public Document insertar(Document doc) {
         if (doc == null) {
             getHead().queue(doc);
@@ -232,9 +291,7 @@ public class Document {
             if (this.getIzquierda() == null) {
                 this.setIzquierda(doc);
                 setHead(doc);
-                
             } else {
-                
                 this.getIzquierda().insertar(doc);
             }
         } else {
@@ -265,20 +322,27 @@ public class Document {
         return doc;
     }
 
-     public boolean existe(Document rdoc,Document doc){
+    /**
+     * Existe
+     *
+     * @param rdoc
+     * @param doc
+     * @return
+     */
+    public boolean existe(Document rdoc, Document doc) {
 //        Document document = (Document) nodo.getElement();
-        if (rdoc == null){
+        if (rdoc == null) {
             return false;
         }
-        if (rdoc.getSize() == doc.getSize()){
+        if (rdoc.getSize() == doc.getSize()) {
             return true;
-        }
-        else if (doc.getSize() < doc.getSize()){
+        } else if (doc.getSize() < doc.getSize()) {
             return existe(doc.getDerecha(), doc);
-        }else{
+        } else {
             return existe(doc.getIzquierda(), doc);
         }
     }
+
     /**
      * @return the priority
      */
@@ -293,106 +357,186 @@ public class Document {
         this.priority = priority;
     }
 
+    /**
+     * IgualQue
+     *
+     * @param q
+     * @return
+     */
     public boolean igualQue(Document q) {
         Document n2 = q;
         return this.priority == n2.getPriority();
     }
 
+    /**
+     * menorQue
+     *
+     * @param q
+     * @return
+     */
     public boolean menorQue(Document q) {
         Document n2 = q;
         return this.priority < n2.getPriority();
     }
 
+    /**
+     * mayorQue
+     *
+     * @param q
+     * @return
+     */
     public boolean mayorQue(Document q) {
         Document n2 = q;
         return this.priority > n2.getPriority();
     }
 
+    /**
+     * menorIgualQue
+     *
+     * @param q
+     * @return
+     */
     public boolean menorIgualQue(Document q) {
         Document n2 = q;
         return this.priority <= n2.getPriority();
     }
 
+    /**
+     * mayorIgualQue
+     *
+     * @param q
+     * @return
+     */
     public boolean mayorIgualQue(Document q) {
         Document n2 = q;
         return this.priority >= n2.getPriority();
     }
-    
-    public int nodosCompletos(Document n){
-        if(n==null)
+
+    /**
+     * nodosCompletos
+     *
+     * @param n
+     * @return
+     */
+    public int nodosCompletos(Document n) {
+        if (n == null) {
             return 0;
-        else {
-            if (n.getIzquierda()!= null && n.getDerecha()!= null){
-                return nodosCompletos(n.getIzquierda())+ nodosCompletos(n.getDerecha())+1;
+        } else {
+            if (n.getIzquierda() != null && n.getDerecha() != null) {
+                return nodosCompletos(n.getIzquierda()) + nodosCompletos(n.getDerecha()) + 1;
             }
-            return nodosCompletos(n.getIzquierda())+ nodosCompletos(n.getDerecha());      
+            return nodosCompletos(n.getIzquierda()) + nodosCompletos(n.getDerecha());
         }
     }
-    
-    public void queue(Document nuevo){
-        if (this.isEmpty()){
+
+    /**
+     * queue
+     *
+     * @param nuevo
+     */
+    public void queue(Document nuevo) {
+        if (this.isEmpty()) {
             setHead(nuevo);
-            
+
         } else {
             getTail().setpNext(nuevo);
-            
+
         }
         setTail(nuevo);
         setSize(getSize() + 1);
     }
-    
-    public Document getDoc(){
-        if(this.isEmpty()) {
+
+    /**
+     * getDoc
+     * @return 
+     */
+    public Document getDoc() {
+        if (this.isEmpty()) {
             return null;
-        }else{
+        } else {
             return getHead();
         }
-        
-        
+
     }
 
+    /**
+     * getpNext
+     * @return 
+     */
     public Document getpNext() {
         return pNext;
     }
 
+    /**
+     * setpNext
+     * @param pNext 
+     */
     public void setpNext(Document pNext) {
         this.pNext = pNext;
     }
 
+    /**
+     * getHead
+     * @return 
+     */
     public Document getHead() {
         return head;
     }
 
+    /**
+     * setHead
+     * @param head 
+     */
     public void setHead(Document head) {
         this.head = head;
     }
 
+    /**
+     * getTail
+     * @return 
+     */
     public Document getTail() {
         return tail;
     }
 
+    /**
+     * setTail
+     * @param tail 
+     */
     public void setTail(Document tail) {
         this.tail = tail;
     }
-    public void empty(){
+
+    /**
+     * empty
+     */
+    public void empty() {
         this.setHead(this.tail = null);
         this.setSize(0);
     }
-    public boolean isEmpty(){
+
+    /**
+     * isEmpty
+     * @return 
+     */
+    public boolean isEmpty() {
         return getHead() == null;
     }
-    public void dequeue(){
-        if (this.isEmpty()){
+
+    /**
+     * dequeue
+     */
+    public void dequeue() {
+        if (this.isEmpty()) {
             System.out.println("La cola esta vacia");
-        } else if (getSize() == 1){
+        } else if (getSize() == 1) {
             this.empty();
         } else {
-            Document elim=getHead();
+            Document elim = getHead();
             setHead(getHead().getpNext());
             setSize(getSize() - 1);
             elim.setpNext(null);
         }
     }
-    
-    
+
 }

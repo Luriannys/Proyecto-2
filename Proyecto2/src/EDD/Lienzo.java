@@ -18,6 +18,10 @@ public class Lienzo extends JPanel {
     public static final int radio=diametro/2;
     public static final int ancho=50;
 
+    /**
+     * setObj
+     * @param obj 
+     */
     public void setObj(ArbolTDA obj) {
         this.obj = obj;
         repaint();
@@ -28,6 +32,14 @@ public class Lienzo extends JPanel {
         super.paint(g); //To change body of generated methods, choose Tools | Templates.
         pintar(g,getWidth()/2,20,obj.getNodoRaiz());
     }
+    
+    /**
+     * Pintar
+     * @param g
+     * @param x
+     * @param y
+     * @param d 
+     */
     private void pintar(Graphics g , int x,int y, Document d){
         if (d==null){
             {}

@@ -5,7 +5,6 @@
 package interfaces;
 
 import EDD.ArbolTDA;
-import EDD.Cola;
 import EDD.Controlador;
 import EDD.Document;
 import EDD.Lienzo;
