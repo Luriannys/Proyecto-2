@@ -367,7 +367,7 @@ public class MainMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_deleteUserActionPerformed
 
     private void helpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_helpActionPerformed
-        JOptionPane.showMessageDialog(null, "¡Bienvenido!\nPara cargar usuarios desde un archivo .csv presione 'Cargar'\nPara agregar usuarios individualmente presione 'Agregar Usuario'\nPara eliminar un usuario de la lista seleccione la fila y presione 'Eliminar Usuario'");
+        JOptionPane.showMessageDialog(null, "¡Bienvenido!\nPara cargar usuarios desde un archivo .csv presione 'Cargar'\nPara agregar usuarios individualmente presione 'Agregar Usuario'\nPara eliminar un usuario de la lista seleccione la fila y presione 'Eliminar Usuario'\nPara agregar un documento debe seleccionar un usuario y presionar 'Agregar documento'\n'Para eliminar un documento debe seleccionar el usuario, luego seleccionar el documento a eliminar y presionar 'Eliminar docu");
     }//GEN-LAST:event_helpActionPerformed
 
     private void delDocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delDocActionPerformed
