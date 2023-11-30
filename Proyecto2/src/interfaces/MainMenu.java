@@ -30,7 +30,7 @@ import resources.ManejoArchivo;
  * @author Luriannys Junco
  */
 public class MainMenu extends javax.swing.JFrame {
-
+    ArbolTDA arbolito= new ArbolTDA();
     DefaultTableModel table = new DefaultTableModel();
     DefaultTableModel tabledoc = new DefaultTableModel();
     public Lista data = new Lista();
@@ -99,6 +99,7 @@ public class MainMenu extends javax.swing.JFrame {
         addDoc = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tableDoc = new javax.swing.JTable();
+        ImprimirDoc1 = new javax.swing.JButton();
         ColaImpresion = new javax.swing.JPanel();
         verCola = new javax.swing.JButton();
         verArbol = new javax.swing.JButton();
@@ -193,6 +194,14 @@ public class MainMenu extends javax.swing.JFrame {
         jScrollPane2.setViewportView(tableDoc);
 
         Usuarios.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 170, 330, 90));
+
+        ImprimirDoc1.setText("Imprimir documento");
+        ImprimirDoc1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ImprimirDoc1ActionPerformed(evt);
+            }
+        });
+        Usuarios.add(ImprimirDoc1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 390, -1, -1));
 
         jTabbedPane1.addTab("Usuarios", Usuarios);
 
@@ -325,27 +334,9 @@ public class MainMenu extends javax.swing.JFrame {
     private void verColaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verColaActionPerformed
         Lienzo lien=new Lienzo();
         JFrame vent=new JFrame();
-        ArbolTDA arbolito= new ArbolTDA();
+        
         Controlador contrl=new Controlador(lien,arbolito);
-        
-        
-        
-        Document doc = new Document("R",10,"Alta");
-        Document doc1 = new Document("a",5,"Alta");
-        Document doc2 = new Document("b",13,"Alta");
-        Document doc3 = new Document("c",1,"Alta");
-        Document doc4 = new Document("d",6,"Alta");
-        Document doc5 = new Document("e",17,"Alta");
-        
-       
-        
 
-        arbolito.setNodoRaiz(doc);
-        arbolito.getNodoRaiz().insertar(doc1);
-        arbolito.getNodoRaiz().insertar(doc2);
-        arbolito.getNodoRaiz().insertar(doc3);
-        arbolito.getNodoRaiz().insertar(doc4);
-        arbolito.getNodoRaiz().insertar(doc5);
         contrl.iniciar();
         vent.getContentPane().add(lien);
         vent.setDefaultCloseOperation(3);
@@ -472,32 +463,44 @@ public class MainMenu extends javax.swing.JFrame {
         // TODO add your handling code here:
         Lienzo lien=new Lienzo();
         JFrame vent=new JFrame();
-        ArbolTDA arbolito= new ArbolTDA();
+        
         Controlador contrl=new Controlador(lien,arbolito);
-        
-        
-        
-        Document doc = new Document("R",10,"Alta");
-        Document doc1 = new Document("a",5,"Alta");
-        Document doc2 = new Document("b",13,"Alta");
-        Document doc3 = new Document("c",1,"Alta");
-        Document doc4 = new Document("d",6,"Alta");
-        Document doc5 = new Document("e",17,"Alta");
-        
-       
-        
-        arbolito.setNodoRaiz(doc);
-        arbolito.getNodoRaiz().insertar(doc1);
-        arbolito.getNodoRaiz().insertar(doc2);
-        arbolito.getNodoRaiz().insertar(doc3);
-        arbolito.getNodoRaiz().insertar(doc4);
-        arbolito.getNodoRaiz().insertar(doc5);
+
         contrl.iniciar();
         vent.getContentPane().add(lien);
         vent.setDefaultCloseOperation(3);
         vent.setSize(600, 600);
         vent.setVisible(true);
     }//GEN-LAST:event_verArbolActionPerformed
+
+    private void ImprimirDoc1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ImprimirDoc1ActionPerformed
+        // TODO add your handling code here:
+        int selectedRow = tableUsers.getSelectedRow();
+        String value = (String) tableUsers.getValueAt(selectedRow, 0);
+        Nodo nodoUser;
+        nodoUser = data.search(value);
+        User user;
+        user = (User) nodoUser.getElement();
+        Lista documents;
+        documents = user.getDocumentos();
+        int selectedRowdoc = tableDoc.getSelectedRow();
+        String valuedoc = (String) tableDoc.getValueAt(selectedRowdoc, 0);
+        tabledoc.removeRow(selectedRowdoc);
+        Nodo nododoc = documents.getpFirst();
+        for (int i = 0; i < documents.getSize(); i++) {
+            Document doc = (Document) nododoc.getElement();
+            if (arbolito.getNodoRaiz()==null){
+                arbolito.setNodoRaiz(doc);
+            }else{
+            arbolito.getNodoRaiz().insertar(doc);
+            }
+            if (doc.getName().equals(valuedoc)) {
+                documents.removeDoc(valuedoc);
+                break;
+            }
+            nododoc = nododoc.getpNext();
+        }
+    }//GEN-LAST:event_ImprimirDoc1ActionPerformed
 
 
     /**
@@ -561,6 +564,7 @@ public class MainMenu extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel ColaImpresion;
+    private javax.swing.JButton ImprimirDoc1;
     private javax.swing.JPanel Usuarios;
     private javax.swing.JButton addDoc;
     private javax.swing.JButton addUser;
