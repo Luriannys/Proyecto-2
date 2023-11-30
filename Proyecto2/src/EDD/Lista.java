@@ -9,15 +9,16 @@ package EDD;
  * @author Luriannys Junco
  */
 public class Lista {
-
-    private Nodo pFirst;
-    private Nodo pLast;
+    
+    private User pFirst;
+    private User pLast;
     private int size;
 
     /**
      * Constructor
      */
     public Lista() {
+        
         this.pFirst = null;
         this.pLast = null;
         this.size = 0;
@@ -44,14 +45,15 @@ public class Lista {
     /**
      * Metodo que agrega un nodo al final de la lista
      *
+     * @param user
      * @param newNodo
      */
-    public void addAtTheEnd(Nodo newNodo) {
+    public void addAtTheEnd(User user) {
         if (this.isEmpty()) {
-            pFirst = pLast = newNodo;
+            pFirst = pLast = user;
         } else {
-            pLast.setpNext(newNodo);
-            pLast = newNodo;
+            pLast.setPNext(user);
+            pLast = user;
         }
         size++;
     }
@@ -61,11 +63,11 @@ public class Lista {
      *
      * @param newNodo
      */
-    public void addAtTheStart(Nodo newNodo) {
+    public void addAtTheStart(User newNodo) {
         if (this.isEmpty()) {
             pFirst = pLast = newNodo;
         } else {
-            newNodo.setpNext(getpFirst());
+            newNodo.setPNext(getpFirst());
             setpFirst(newNodo);
         }
         size++;
@@ -79,7 +81,7 @@ public class Lista {
             if (size == 1) {
                 this.empty();
             } else {
-                pFirst = pFirst.getpNext();
+                pFirst = pFirst.getPNext();
                 size--;
             }
         }
@@ -87,65 +89,67 @@ public class Lista {
 
     /**
      * Metodo que imprime cada nodo de la lista
+     * @param element
      */
-    public void print() {
-        User element;
-        Nodo temp = pFirst;
-        if (this.isEmpty()) {
-            System.out.println("The list is empty.");
-        }
-        while (temp != null) {
-            element = (User) temp.getElement();
-            element.print();
-            temp = temp.getpNext();
-        }
-    }
+//    public void print(String element) {
+//        
+//        User temp = pFirst;
+//        if (this.isEmpty()) {
+//            System.out.println("The list is empty.");
+//        }
+//        while (temp != null) {
+//            element = temp.getUsuario();
+//            temp.print(element);
+//            element.print();
+//            temp = temp.getPNext();
+//        }
+//    }
 
     /**
      * Metodo que retorna los elementos como un string separado por comas
      *
      * @return
      */
-    public String printString() {
-        Document element;
-        String str = "";
-        User user = (User) getpFirst().getpNext().getElement();
-        Lista list = user.getDocumentos();
-        if (list != null) {
-            Nodo temp = list.getpFirst();
-            while (temp != null) {
-                element = (Document) temp.getElement();
-                str += element.getName() + ",";
-                temp = temp.getpNext();
-            }
-        }
-        return str;
-    }
+//    public String printString() {
+//        Document element;
+//        String str = "";
+//        User user = (User) getpFirst().getpNext().getElement();
+//        Lista list = user.getDocumentos();
+//        if (list != null) {
+//            Nodo temp = list.getpFirst();
+//            while (temp != null) {
+//                element = (Document) temp.getElement();
+//                str += element.getName() + ",";
+//                temp = temp.getpNext();
+//            }
+//        }
+//        return str;
+//    }
         /**
          * @return pFirst
          */
-    public Nodo getpFirst() {
+    public User getpFirst() {
         return pFirst;
     }
 
     /**
      * @param pFirst
      */
-    public void setpFirst(Nodo pFirst) {
+    public void setpFirst(User pFirst) {
         this.pFirst = pFirst;
     }
 
     /**
      * @return pLast
      */
-    public Nodo getpLast() {
+    public User getpLast() {
         return pLast;
     }
 
     /**
      * @param pLast
      */
-    public void setpLast(Nodo pLast) {
+    public void setpLast(User pLast) {
         this.pLast = pLast;
     }
 

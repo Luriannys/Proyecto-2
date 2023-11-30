@@ -90,7 +90,7 @@ public class AddUser extends javax.swing.JFrame {
     }//GEN-LAST:event_nameActionPerformed
 
     private void addUsersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addUsersActionPerformed
-         String nameUser = name.getSelectedText();
+        String nameUser = name.getSelectedText();
         String priorityUser = (String) priority.getSelectedItem();
         User newUser = new User(nameUser, priorityUser);
         MainMenu mm = new MainMenu();

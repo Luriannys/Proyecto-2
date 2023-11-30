@@ -4,13 +4,6 @@
  */
 package EDD;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
-
 /**
  *
  * @author Luriannys Junco
@@ -20,19 +13,19 @@ public class ComparatorTest {
     public ComparatorTest() {
     }
     
-    @BeforeAll
+//    @BeforeAll
     public static void setUpClass() {
     }
     
-    @AfterAll
+//    @AfterAll
     public static void tearDownClass() {
     }
     
-    @BeforeEach
+//    @BeforeEach
     public void setUp() {
     }
     
-    @AfterEach
+//    @AfterEach
     public void tearDown() {
     }
     

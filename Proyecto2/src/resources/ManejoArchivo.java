@@ -75,7 +75,7 @@ public class ManejoArchivo {
                         String[] user_att = user_split[i].split(";");
                         User user = new User(user_att[0], user_att[1]);
                         Nodo newNodo = new Nodo(user);
-                        clientes.addAtTheEnd(newNodo);
+                        clientes.addAtTheEnd(user);
                     }
                 }
                 br.close();
