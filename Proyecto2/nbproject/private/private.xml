@@ -4,8 +4,10 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/Usuario/Documents/GitHub/Proyecto-2/Proyecto2/src/interfaces/MainMenu.java</file>
-            <file>file:/C:/Users/Usuario/Documents/GitHub/Proyecto-2/Proyecto2/src/EDD/Nodo.java</file>
-            <file>file:/C:/Users/Usuario/Documents/GitHub/Proyecto-2/Proyecto2/src/interfaces/AddUser.java</file>
+            <file>file:/C:/Users/Usuario/Documents/GitHub/Proyecto-2/Proyecto2/src/EDD/Lista.java</file>
+            <file>file:/C:/Users/Usuario/Documents/GitHub/Proyecto-2/Proyecto2/src/interfaces/ViewTree.java</file>
+            <file>file:/C:/Users/Usuario/Documents/GitHub/Proyecto-2/Proyecto2/src/resources/ManejoArchivo.java</file>
+            <file>file:/C:/Users/Usuario/Documents/GitHub/Proyecto-2/Proyecto2/src/EDD/Document.java</file>
             <file>file:/C:/Users/Usuario/Documents/GitHub/Proyecto-2/Proyecto2/src/EDD/User.java</file>
         </group>
     </open-files>

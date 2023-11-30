@@ -54,7 +54,7 @@ public class ManejoArchivo {
      * @param file
      * @return
      */
-    public static Lista read_csv(File file) {
+    public static Lista readCsv(File file) {
         Lista clientes = new Lista();
         String line;
         String file_csv = "";

@@ -5,7 +5,6 @@
  */
 package EDD;
 
-import java.util.Objects;
 import javax.swing.JOptionPane;
 
 /**
@@ -16,12 +15,7 @@ public class User {
     private String usuario;
     private String tipo ;
     private Lista documentos;
-    private User pNext;
-    private int num;
     
-    
-    
-
     /**
      * Constructor
      * @param usuario
@@ -32,7 +26,6 @@ public class User {
         this.usuario = usuario;
         this.tipo = tipo;
         this.documentos = documentos;
-        this.pNext = null;
     }
 
     /**
@@ -43,9 +36,7 @@ public class User {
     public User(String usuario, String tipo) {
         this.usuario = usuario;
         this.tipo = tipo;
-        this.documentos = null;
-        this. pNext = null;
-        this.num=0;
+        this.documentos = new Lista();
     }
     
     /**
@@ -126,22 +117,5 @@ public class User {
     public void setDocumentos(Lista documentos) {
         this.documentos = documentos;
     }
-
-    /**
-     * getPNext
-     * @return 
-     */
-    public User getPNext() {
-        return pNext;
-    }
-
-    /**
-     * setPNext
-     * @param PNext 
-     */
-    public void setPNext(User PNext) {
-        this.pNext = PNext;
-    }
-    
     
 }

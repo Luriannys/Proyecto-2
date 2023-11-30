@@ -27,6 +27,10 @@ public class ViewTree extends javax.swing.JPanel {
         numVerts=0;
         initComponents();
     }
+
+    public ViewTree() {
+        numVerts = 0;        
+    }
     
     public void insertarVertice(String c){
         boolean existe=numVertice(c);

@@ -10,8 +10,6 @@ import EDD.User;
 import java.io.File;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Vector;
-import javax.swing.ComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -26,7 +24,8 @@ import resources.ManejoArchivo;
 public class MainMenu extends javax.swing.JFrame {
 
     DefaultTableModel table = new DefaultTableModel();
-    public Lista carga;
+    public Lista data = new Lista();
+    public Lista carga = new Lista();
 
     /**
      * Creates new form MainMenu
@@ -34,6 +33,9 @@ public class MainMenu extends javax.swing.JFrame {
     public MainMenu() {
         initComponents();
 
+        /**
+         * Reloj
+         */
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
         Runnable runnable;
         runnable = new Runnable() {
@@ -173,63 +175,112 @@ public class MainMenu extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Boton "Cargar"
+     *
+     * @param evt
+     */
     private void cargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cargarActionPerformed
         try {
-            JFileChooser file = new JFileChooser();
-            FileNameExtensionFilter filter = new FileNameExtensionFilter(".csv", "csv");
-            file.setFileFilter(filter);
+            JFileChooser file = new JFileChooser(); // JFileChooser
+            FileNameExtensionFilter filter = new FileNameExtensionFilter(".csv", "csv"); // Crear filtro "csv"
+            file.setFileFilter(filter); 
             file.showOpenDialog(this);
             File openFile = file.getSelectedFile();
-            carga = ManejoArchivo.read_csv(openFile);
+            carga = ManejoArchivo.readCsv(openFile); // Montar el archivo
+            Nodo nodo;
+            if (!carga.isEmpty()) {
+                nodo = carga.getpFirst();
+                for (int i = 0; i < carga.getSize(); i++) {
+                    data.addAtTheEnd(nodo);
+                    nodo = nodo.getpNext();
+                }
+            }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e + " " + "\nNo se ha encontrado el archivo", "ADVERTENCIA!!!", JOptionPane.WARNING_MESSAGE);
         }
         updateTable();
     }
 
+    /**
+     * Actualizar tabla de usuarios
+     */
     public void updateTable() {
-        String ids[] = {"Usuarios", "Prioridad", "Documentos"};
+        tableUsers.removeAll(); //Vacia la tabla
+        String ids[] = {"Usuarios", "Prioridad", "Documentos"}; //Identificadores de columnas
         table.setColumnIdentifiers(ids);
         tableUsers.setModel(table);
         tableUsers.setEnabled(false);
-        if (carga != null) {
-            String info[] = new String[carga.getSize()];
+        if (data != null) {
+            String info[] = new String[data.getSize()];
             Nodo nodo;
-            nodo = carga.getpFirst().getpNext();
+            nodo = data.getpFirst().getpNext();
             for (int i = 1; i < info.length; i++) {
                 User element = (User) nodo.getElement();
                 info[0] = element.getUsuario();
                 info[1] = element.getTipo();
-                info[2] = carga.printString();
+                info[2] = data.printString();
                 table.addRow(info);
                 nodo = nodo.getpNext();
             }
         } else {
             String message[] = {"No hay usuarios"};
             table.addRow(message);
+        }
     }//GEN-LAST:event_cargarActionPerformed
-    }
+    /**
+     * Boton "Cerrar"
+     *
+     * @param evt
+     */
     private void cerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cerrarActionPerformed
-        System.exit(0);
+        System.exit(0); // Cierra el programa
     }//GEN-LAST:event_cerrarActionPerformed
 
+    /**
+     * Boton "Ver Arbol"
+     *
+     * @param evt
+     */
     private void verArbolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verArbolActionPerformed
-        // TODO add your handling code here:
+        ViewTree v = new ViewTree(); //Cambia a vientana del arbol
+        v.setVisible(true);
     }//GEN-LAST:event_verArbolActionPerformed
 
+    /**
+     * Boton "Agregar Usuario"
+     *
+     * @param evt
+     */
     private void addUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addUserActionPerformed
         String nameUser = JOptionPane.showInputDialog("Nombre de usuario: ");
-        String [] priorities = {"prioridad_alta", "prioridad_media", "prioridad_baja"};
+        String[] priorities = {"prioridad_alta", "prioridad_media", "prioridad_baja"}; // Opciones de JComboBox
         JComboBox election = new JComboBox();
         election.addItem(priorities);
         String priorityUser = JOptionPane.showInputDialog(election, "Prioridad: ");
-        carga.addAtTheEnd(new Nodo(User(nameUser, priorityUser)));
-        
+        User user = new User(nameUser, priorityUser);
+        Nodo nodo = new Nodo(user);
+        data.addAtTheEnd(nodo);
+        updateTable();
     }//GEN-LAST:event_addUserActionPerformed
 
-    public Lista getCarga(){
+    /**
+     * getCarga
+     *
+     * @return carga
+     */
+    public Lista getCarga() {
         return carga;
     }
+
+    /**
+     * getData
+     * @return data
+     */
+    public Lista getData(){
+        return data;
+    }
+    
     /**
      * @param args the command line arguments
      */

@@ -21,7 +21,7 @@ public class Vertice {
     
     
     public boolean equals(Vertice n){
-        return nombre.equals(n);
+        return nombre.equals(n.getNombre());
     }
     
     public String toString(){

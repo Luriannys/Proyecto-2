@@ -48,10 +48,10 @@ public class Lista {
      */
     public void addAtTheEnd(Nodo newNodo) {
         if (this.isEmpty()) {
-            pFirst = pLast = newNodo;
+            this.pFirst = this.pLast = newNodo;
         } else {
-            pLast.setpNext(newNodo);
-            pLast = newNodo;
+            this.pLast.setpNext(newNodo);
+            this.pLast = newNodo;
         }
         size++;
     }
@@ -63,7 +63,7 @@ public class Lista {
      */
     public void addAtTheStart(Nodo newNodo) {
         if (this.isEmpty()) {
-            pFirst = pLast = newNodo;
+            this.pFirst = this.pLast = newNodo;
         } else {
             newNodo.setpNext(getpFirst());
             setpFirst(newNodo);
