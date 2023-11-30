@@ -100,10 +100,9 @@ public class MainMenu extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         tableDoc = new javax.swing.JTable();
         ColaImpresion = new javax.swing.JPanel();
+        verCola = new javax.swing.JButton();
         verArbol = new javax.swing.JButton();
         cerrar = new javax.swing.JButton();
-        verCola = new javax.swing.JButton();
-        verArbol1 = new javax.swing.JButton();
         tagWatch = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -208,13 +207,13 @@ public class MainMenu extends javax.swing.JFrame {
         });
         ColaImpresion.add(verCola, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 400, -1, -1));
 
-        verArbol1.setText("Ver Arbol");
-        verArbol1.addActionListener(new java.awt.event.ActionListener() {
+        verArbol.setText("Ver Arbol");
+        verArbol.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                verArbol1ActionPerformed(evt);
+                verArbolActionPerformed(evt);
             }
         });
-        ColaImpresion.add(verArbol1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 400, -1, -1));
+        ColaImpresion.add(verArbol, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 400, -1, -1));
 
         jTabbedPane1.addTab("Cola de impresion", ColaImpresion);
 
@@ -469,7 +468,7 @@ public class MainMenu extends javax.swing.JFrame {
         }
     }
 
-    private void verArbol1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verArbol1ActionPerformed
+    private void verArbolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verArbolActionPerformed
         // TODO add your handling code here:
         Lienzo lien=new Lienzo();
         JFrame vent=new JFrame();
@@ -498,7 +497,7 @@ public class MainMenu extends javax.swing.JFrame {
         vent.setDefaultCloseOperation(3);
         vent.setSize(600, 600);
         vent.setVisible(true);
-    }//GEN-LAST:event_verArbol1ActionPerformed
+    }//GEN-LAST:event_verArbolActionPerformed
 
 
     /**
@@ -578,7 +577,7 @@ public class MainMenu extends javax.swing.JFrame {
     private javax.swing.JTable tableDoc;
     private javax.swing.JTable tableUsers;
     private javax.swing.JLabel tagWatch;
-    private javax.swing.JButton verArbol1;
+    private javax.swing.JButton verArbol;
     private javax.swing.JButton verCola;
     // End of variables declaration//GEN-END:variables
 }
