@@ -7,6 +7,9 @@ package proyecto2;
 //import EDD.Lista;
 //import EDD.Nodo;
 //import EDD.User;
+import EDD.ArbolTDA;
+import EDD.Document;
+import EDD.Lienzo;
 import interfaces.MainMenu;
 
 /**
@@ -22,7 +25,7 @@ public class Proyecto2 {
         
         MainMenu m = new MainMenu();
         m.setVisible(true);
-
+        
 //        Lista L;
 //        L = new Lista();
 //        L = m.getCarga();

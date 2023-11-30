@@ -4,6 +4,10 @@
  */
 package interfaces;
 
+import EDD.ArbolTDA;
+import EDD.Controlador;
+import EDD.Document;
+import EDD.Lienzo;
 import EDD.Lista;
 import EDD.Nodo;
 import EDD.User;
@@ -12,6 +16,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
@@ -243,8 +248,27 @@ public class MainMenu extends javax.swing.JFrame {
      * @param evt
      */
     private void verArbolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verArbolActionPerformed
-        ViewTree v = new ViewTree(); //Cambia a vientana del arbol
-        v.setVisible(true);
+        Lienzo lien=new Lienzo();
+        JFrame vent=new JFrame();
+        ArbolTDA arbolito= new ArbolTDA();
+        Controlador contrl=new Controlador(lien,arbolito);
+        
+        Document doc = new Document("R",10,"Alta");
+        Document doc1 = new Document("a",5,"Alta");
+        Document doc2 = new Document("b",13,"Alta");
+        Document doc3 = new Document("c",1,"Alta");
+        Document doc4 = new Document("d",6,"Alta");
+        Document doc5 = new Document("e",17,"Alta");
+        arbolito.setNodoRaiz(doc);
+        arbolito.getNodoRaiz().insertar(doc1);
+        arbolito.getNodoRaiz().insertar(doc2);
+        arbolito.getNodoRaiz().insertar(doc3);
+        arbolito.getNodoRaiz().insertar(doc4);
+        arbolito.getNodoRaiz().insertar(doc5);
+        
+        vent.getContentPane().add(lien);
+        vent.setDefaultCloseOperation(3);
+        vent.setSize(600, 600);
     }//GEN-LAST:event_verArbolActionPerformed
 
     /**
