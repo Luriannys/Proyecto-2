@@ -273,6 +273,7 @@ public class MainMenu extends javax.swing.JFrame {
         vent.getContentPane().add(lien);
         vent.setDefaultCloseOperation(3);
         vent.setSize(600, 600);
+        vent.setVisible(true);
     }//GEN-LAST:event_verArbolActionPerformed
 
     /**
