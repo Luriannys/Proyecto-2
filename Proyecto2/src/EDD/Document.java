@@ -18,6 +18,7 @@ public class Document {
     private Document izquierda;
     private int fe;
     private double priority;
+    private Document pNext;
 
     /**
      * Constructor
@@ -36,6 +37,7 @@ public class Document {
         this.izquierda = null;
         this.fe = 0;
         this.priority = priority;
+        this.pNext=null;
     }
 
     /**
@@ -305,7 +307,7 @@ public class Document {
         Document n2 = q;
         return this.priority >= n2.getPriority();
     }
-     
+    
     public int nodosCompletos(Document n){
         if(n==null)
             return 0;
@@ -316,4 +318,13 @@ public class Document {
             return nodosCompletos(n.getIzquierda())+ nodosCompletos(n.getDerecha());      
         }
     }
+
+    public Document getpNext() {
+        return pNext;
+    }
+
+    public void setpNext(Document pNext) {
+        this.pNext = pNext;
+    }
+    
 }

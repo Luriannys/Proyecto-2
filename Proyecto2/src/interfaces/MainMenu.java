@@ -5,6 +5,7 @@
 package interfaces;
 
 import EDD.ArbolTDA;
+import EDD.Cola;
 import EDD.Controlador;
 import EDD.Document;
 import EDD.Lienzo;
@@ -256,6 +257,8 @@ public class MainMenu extends javax.swing.JFrame {
         JFrame vent=new JFrame();
         ArbolTDA arbolito= new ArbolTDA();
         Controlador contrl=new Controlador(lien,arbolito);
+        Cola col=new Cola();
+        
         
         Document doc = new Document("R",10,"Alta");
         Document doc1 = new Document("a",5,"Alta");
@@ -263,13 +266,17 @@ public class MainMenu extends javax.swing.JFrame {
         Document doc3 = new Document("c",1,"Alta");
         Document doc4 = new Document("d",6,"Alta");
         Document doc5 = new Document("e",17,"Alta");
+        
+        col.queue(doc5);
+        col.queue(doc);
+        
         arbolito.setNodoRaiz(doc);
         arbolito.getNodoRaiz().insertar(doc1);
         arbolito.getNodoRaiz().insertar(doc2);
         arbolito.getNodoRaiz().insertar(doc3);
         arbolito.getNodoRaiz().insertar(doc4);
         arbolito.getNodoRaiz().insertar(doc5);
-        lien.setObj(arbolito);
+        contrl.iniciar();
         vent.getContentPane().add(lien);
         vent.setDefaultCloseOperation(3);
         vent.setSize(600, 600);

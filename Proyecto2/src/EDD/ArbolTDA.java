@@ -58,6 +58,8 @@ public class ArbolTDA {
     public Document getNodoRaiz() {
         return nodoRaiz;
     }
+    
+    
 
     /**
      * setNodoRaiz
