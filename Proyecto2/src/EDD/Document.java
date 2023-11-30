@@ -381,7 +381,18 @@ public class Document {
     public boolean isEmpty(){
         return getHead() == null;
     }
-    
+    public void dequeue(){
+        if (this.isEmpty()){
+            System.out.println("La cola esta vacia");
+        } else if (getSize() == 1){
+            this.empty();
+        } else {
+            Document elim=getHead();
+            setHead(getHead().getpNext());
+            setSize(getSize() - 1);
+            elim.setpNext(null);
+        }
+    }
     
     
 }

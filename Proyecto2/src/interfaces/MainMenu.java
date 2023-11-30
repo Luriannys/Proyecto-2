@@ -324,6 +324,33 @@ public class MainMenu extends javax.swing.JFrame {
 
     private void verArbol1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verArbol1ActionPerformed
         // TODO add your handling code here:
+        Lienzo lien=new Lienzo();
+        JFrame vent=new JFrame();
+        ArbolTDA arbolito= new ArbolTDA();
+        Controlador contrl=new Controlador(lien,arbolito);
+        
+        
+        
+        Document doc = new Document("R",10,"Alta");
+        Document doc1 = new Document("a",5,"Alta");
+        Document doc2 = new Document("b",13,"Alta");
+        Document doc3 = new Document("c",1,"Alta");
+        Document doc4 = new Document("d",6,"Alta");
+        Document doc5 = new Document("e",17,"Alta");
+        
+       
+        
+        arbolito.setNodoRaiz(doc);
+        arbolito.getNodoRaiz().insertar(doc1);
+        arbolito.getNodoRaiz().insertar(doc2);
+        arbolito.getNodoRaiz().insertar(doc3);
+        arbolito.getNodoRaiz().insertar(doc4);
+        arbolito.getNodoRaiz().insertar(doc5);
+        contrl.iniciar();
+        vent.getContentPane().add(lien);
+        vent.setDefaultCloseOperation(3);
+        vent.setSize(600, 600);
+        vent.setVisible(true);
     }//GEN-LAST:event_verArbol1ActionPerformed
 
     /**
