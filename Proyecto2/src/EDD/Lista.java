@@ -4,6 +4,8 @@
  */
 package EDD;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Luriannys Junco
@@ -121,9 +123,39 @@ public class Lista {
         }
         return str;
     }
-        /**
-         * @return pFirst
-         */
+
+    /**
+     * Metodo que elimina un elemento de la lista por nombre
+     *
+     * @param name
+     */
+    public void remove(String name) {
+        Nodo nodo = pFirst;
+        if (!this.isEmpty()) {
+            User data = (User) pFirst.getElement();
+            if (data.getUsuario().equals(name)) {
+                pFirst = pFirst.getpNext();
+                size--;
+            } else {
+                while (nodo.getpNext() != null) {
+                    Nodo nodo2 = nodo.getpNext();
+                    User data2 = (User) nodo2.getElement();
+                    if (data2.getUsuario().equals(name)) {
+                        nodo.setpNext(nodo2.getpNext());
+                        size--;
+                        break;
+                    }
+                    nodo = nodo.getpNext();
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "La lista esta vacia");
+        }
+    }
+
+    /**
+     * @return pFirst
+     */
     public Nodo getpFirst() {
         return pFirst;
     }

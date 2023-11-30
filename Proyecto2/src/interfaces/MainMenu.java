@@ -121,6 +121,11 @@ public class MainMenu extends javax.swing.JFrame {
         Usuarios.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 490, 160));
 
         deleteUser.setText("Eliminar Usuario");
+        deleteUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteUserActionPerformed(evt);
+            }
+        });
         Usuarios.add(deleteUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 330, -1, -1));
 
         addUser.setText("Agregar Usuario");
@@ -184,7 +189,7 @@ public class MainMenu extends javax.swing.JFrame {
         try {
             JFileChooser file = new JFileChooser(); // JFileChooser
             FileNameExtensionFilter filter = new FileNameExtensionFilter(".csv", "csv"); // Crear filtro "csv"
-            file.setFileFilter(filter); 
+            file.setFileFilter(filter);
             file.showOpenDialog(this);
             File openFile = file.getSelectedFile();
             carga = ManejoArchivo.readCsv(openFile); // Montar el archivo
@@ -210,7 +215,6 @@ public class MainMenu extends javax.swing.JFrame {
         String ids[] = {"Usuarios", "Prioridad", "Documentos"}; //Identificadores de columnas
         table.setColumnIdentifiers(ids);
         tableUsers.setModel(table);
-        tableUsers.setEnabled(false);
         if (!data.isEmpty()) {
             Nodo nodo;
             nodo = data.getpFirst();
@@ -263,12 +267,38 @@ public class MainMenu extends javax.swing.JFrame {
         updateTable();
     }//GEN-LAST:event_addUserActionPerformed
 
-    /**
-     * getCarga
-     *
-     * @return carga
-     */
-    public Lista getCarga() {
+    private void deleteUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteUserActionPerformed
+        int selectedRow = tableUsers.getSelectedRow();
+        String value = (String) tableUsers.getValueAt(selectedRow, 0);
+        table.removeRow(selectedRow);
+        Nodo nodo = data.getpFirst();
+        for (int i = 0; i < data.getSize(); i++) {
+            User user = (User) nodo.getElement();
+            if (user.getUsuario().equals(value)) {
+                data.remove(value);
+                break;
+            }
+            nodo = nodo.getpNext();
+        }
+   
+
+//table.removeRow(tableUsers.getSelectedRow());
+//        String value = (String) tableUsers.getValueAt(tableUsers.getSelectedRow(), 0);
+//        Nodo nodo = data.getpFirst();
+//        for (int i = 0; i < data.getSize(); i++){
+//            User user = (User) nodo.getElement();
+//            if (user.getUsuario().equals(value)){
+//                data.remove(value);
+//            }
+//        }
+    }//GEN-LAST:event_deleteUserActionPerformed
+
+/**
+ * getCarga
+ *
+ * @return carga
+ */
+public Lista getCarga() {
         return carga;
     }
 
@@ -295,23 +325,27 @@ public class MainMenu extends javax.swing.JFrame {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
 
-                }
+}
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MainMenu.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MainMenu.class  
 
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MainMenu.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MainMenu.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+} catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(MainMenu.class  
 
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MainMenu.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
+} catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(MainMenu.class  
+
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
+} catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(MainMenu.class  
+
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
