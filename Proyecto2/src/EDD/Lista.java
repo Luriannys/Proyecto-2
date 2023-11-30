@@ -109,7 +109,7 @@ public class Lista {
     public String printString() {
         Document element;
         String str = "";
-        User user = (User) getpFirst().getpNext().getElement();
+        User user = (User) getpFirst().getElement();
         Lista list = user.getDocumentos();
         if (list != null) {
             Nodo temp = list.getpFirst();

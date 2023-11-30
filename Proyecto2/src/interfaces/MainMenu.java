@@ -192,7 +192,7 @@ public class MainMenu extends javax.swing.JFrame {
             if (!carga.isEmpty()) {
                 nodo = carga.getpFirst();
                 for (int i = 0; i < carga.getSize(); i++) {
-                    data.addAtTheEnd(nodo);
+                    data.addAtTheStart(nodo);
                     nodo = nodo.getpNext();
                 }
             }
@@ -206,16 +206,16 @@ public class MainMenu extends javax.swing.JFrame {
      * Actualizar tabla de usuarios
      */
     public void updateTable() {
-        tableUsers.removeAll(); //Vacia la tabla
+        table.setRowCount(0); //Vacia la tabla
         String ids[] = {"Usuarios", "Prioridad", "Documentos"}; //Identificadores de columnas
         table.setColumnIdentifiers(ids);
         tableUsers.setModel(table);
         tableUsers.setEnabled(false);
-        if (data != null) {
-            String info[] = new String[data.getSize()];
+        if (!data.isEmpty()) {
             Nodo nodo;
-            nodo = data.getpFirst().getpNext();
-            for (int i = 1; i < info.length; i++) {
+            nodo = data.getpFirst();
+            for (int i = 0; i < data.getSize(); i++) {
+                String info[] = new String[3];
                 User element = (User) nodo.getElement();
                 info[0] = element.getUsuario();
                 info[1] = element.getTipo();
@@ -255,12 +255,11 @@ public class MainMenu extends javax.swing.JFrame {
     private void addUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addUserActionPerformed
         String nameUser = JOptionPane.showInputDialog("Nombre de usuario: ");
         String[] priorities = {"prioridad_alta", "prioridad_media", "prioridad_baja"}; // Opciones de JComboBox
-        JComboBox election = new JComboBox();
-        election.addItem(priorities);
-        String priorityUser = JOptionPane.showInputDialog(election, "Prioridad: ");
+        JComboBox election = new JComboBox(priorities);
+        String priorityUser = (String) JOptionPane.showInputDialog(null, "Prioridad:", "Elegir", JOptionPane.QUESTION_MESSAGE, null, priorities, priorities[0]);
         User user = new User(nameUser, priorityUser);
         Nodo nodo = new Nodo(user);
-        data.addAtTheEnd(nodo);
+        data.addAtTheStart(nodo);
         updateTable();
     }//GEN-LAST:event_addUserActionPerformed
 
