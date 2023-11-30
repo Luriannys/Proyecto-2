@@ -79,6 +79,7 @@ public class MainMenu extends javax.swing.JFrame {
         tableUsers = new javax.swing.JTable();
         deleteUser = new javax.swing.JButton();
         addUser = new javax.swing.JButton();
+        help = new javax.swing.JButton();
         ColaImpresion = new javax.swing.JPanel();
         verArbol = new javax.swing.JButton();
         tagWatch = new javax.swing.JLabel();
@@ -140,6 +141,14 @@ public class MainMenu extends javax.swing.JFrame {
             }
         });
         Usuarios.add(addUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 290, -1, -1));
+
+        help.setText("Ayuda");
+        help.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                helpActionPerformed(evt);
+            }
+        });
+        Usuarios.add(help, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 400, -1, -1));
 
         jTabbedPane1.addTab("Usuarios", Usuarios);
 
@@ -307,6 +316,10 @@ public class MainMenu extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_deleteUserActionPerformed
 
+    private void helpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_helpActionPerformed
+         JOptionPane.showMessageDialog(null, "¡Bienvenido!\nPara cargar usuarios desde un archivo .csv presione 'Cargar'\nPara agregar usuarios individualmente presione 'Agregar Usuario'\nPara eliminar un usuario de la lista seleccione la fila y presione 'Eliminar Usuario'");
+    }//GEN-LAST:event_helpActionPerformed
+
     /**
      * getCarga
      *
@@ -374,6 +387,7 @@ public class MainMenu extends javax.swing.JFrame {
     private javax.swing.JButton cargar;
     private javax.swing.JButton cerrar;
     private javax.swing.JButton deleteUser;
+    private javax.swing.JButton help;
     private javax.swing.JLabel image;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
