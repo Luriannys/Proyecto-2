@@ -102,29 +102,30 @@ public class Lista {
 //            temp.print(element);
 //            element.print();
 //            temp = temp.getPNext();
-//        }
-//    }
+////        }
+////    }
 
     /**
      * Metodo que retorna los elementos como un string separado por comas
      *
      * @return
      */
-//    public String printString() {
-//        Document element;
-//        String str = "";
-//        User user = (User) getpFirst().getpNext().getElement();
-//        Lista list = user.getDocumentos();
-//        if (list != null) {
-//            Nodo temp = list.getpFirst();
-//            while (temp != null) {
-//                element = (Document) temp.getElement();
-//                str += element.getName() + ",";
-//                temp = temp.getpNext();
-//            }
-//        }
-//        return str;
-//    }
+    public String printString() {
+        Document element;
+        String str = "";
+        User user = this.getpFirst();
+        Document list = user.getDocumentos();
+        if (list != null) {
+            Document temp= list.getpFirst();
+            
+            while (temp != null) {
+                
+                str += temp.getName() + ",";
+                temp = temp.getpNext();
+            }
+        }
+        return str;
+    }
         /**
          * @return pFirst
          */

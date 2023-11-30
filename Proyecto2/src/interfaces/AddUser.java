@@ -94,7 +94,7 @@ public class AddUser extends javax.swing.JFrame {
         String priorityUser = (String) priority.getSelectedItem();
         User newUser = new User(nameUser, priorityUser);
         MainMenu mm = new MainMenu();
-        mm.getCarga().addAtTheEnd(new Nodo(newUser));
+        mm.getCarga().addAtTheEnd(newUser);
         mm.updateTable();
     }//GEN-LAST:event_addUsersActionPerformed
 

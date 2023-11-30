@@ -15,7 +15,7 @@ import javax.swing.JOptionPane;
 public class User {
     private String usuario;
     private String tipo ;
-    private Lista documentos;
+    private Document documentos;
     private User pNext;
     private int num;
     
@@ -28,7 +28,7 @@ public class User {
      * @param tipo
      * @param documentos 
      */
-    public User(String usuario, String tipo, Lista documentos) {
+    public User(String usuario, String tipo, Document documentos) {
         this.usuario = usuario;
         this.tipo = tipo;
         this.documentos = documentos;
@@ -52,29 +52,27 @@ public class User {
      * Metodo para agregar documentos a la lista
      * @return 
      */
-//    public Lista addDocument(){
-//        //se tiene que seleccionar antes el usuario que se le va agregar el doc
-//        String name;
-//        int size;
-//        String type;
-//        double priority;
-//        name = JOptionPane.showInputDialog("Nombre del documento: ");
-//        size = Integer.parseInt(JOptionPane.showInputDialog("Numero de paginas"));
-//        type = JOptionPane.showInputDialog("Tipo de domuento: ");
-//        int factorPriority;
-//        if ("prioridad_alta".equals(this.tipo)){
-//            factorPriority = 3;
-//        } else if ("prioridad_media".equals(this.tipo)){
-//            factorPriority = 2;
-//        } else {
-//            factorPriority = 1;
-//        }
-//        priority = size/factorPriority;
-//        Document newDoc = new Document(name, size, type, priority);
-//        User newNodo = new Nodo(newDoc);
-//        this.documentos.addAtTheEnd(newNodo);
-//        return this.documentos;
-//    }
+    public void addDocument(){
+        
+        String name;
+        int size;
+        String type;
+        double priority;
+        name = JOptionPane.showInputDialog("Nombre del documento: ");
+        size = Integer.parseInt(JOptionPane.showInputDialog("Numero de paginas"));
+        type = JOptionPane.showInputDialog("Tipo de domuento: ");
+        int factorPriority;
+        if ("prioridad_alta".equals(this.tipo)){
+            factorPriority = 3;
+        } else if ("prioridad_media".equals(this.tipo)){
+            factorPriority = 2;
+        } else {
+            factorPriority = 1;
+        }
+        priority = size/factorPriority;
+        Document newDoc = new Document(name, size, type, priority);
+        this.getDocumentos().addAtTheEnd(newDoc);
+    }
     
     public void print(){
         System.out.println(this.usuario + this.tipo);
@@ -116,7 +114,7 @@ public class User {
      * getDocumentos
      * @return 
      */
-    public Lista getDocumentos() {
+    public Document getDocumentos() {
         return documentos;
     }
 
@@ -124,7 +122,7 @@ public class User {
      * setDocumentos
      * @param documentos 
      */
-    public void setDocumentos(Lista documentos) {
+    public void setDocumentos(Document documentos) {
         this.documentos = documentos;
     }
 

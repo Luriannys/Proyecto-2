@@ -194,15 +194,15 @@ public class MainMenu extends javax.swing.JFrame {
         tableUsers.setEnabled(false);
         if (carga != null) {
             String info[] = new String[carga.getSize()];
-            Nodo nodo;
-            nodo = carga.getpFirst().getpNext();
+            User nodo;
+            nodo = carga.getpFirst().getPNext();
             for (int i = 1; i < info.length; i++) {
-                User element = (User) nodo.getElement();
-                info[0] = element.getUsuario();
-                info[1] = element.getTipo();
+//                User element = (User) nodo.getElement();
+                info[0] = nodo.getUsuario();
+                info[1] =nodo.getTipo();
                 info[2] = carga.printString();
                 table.addRow(info);
-                nodo = nodo.getpNext();
+                nodo = nodo.getPNext();
             }
         } else {
             String message[] = {"No hay usuarios"};
@@ -223,7 +223,7 @@ public class MainMenu extends javax.swing.JFrame {
         JComboBox election = new JComboBox();
         election.addItem(priorities);
         String priorityUser = JOptionPane.showInputDialog(election, "Prioridad: ");
-        carga.addAtTheEnd(new Nodo(User(nameUser, priorityUser)));
+        carga.addAtTheEnd(new User(nameUser, priorityUser));
         
     }//GEN-LAST:event_addUserActionPerformed
 

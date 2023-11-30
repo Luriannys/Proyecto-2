@@ -18,6 +18,10 @@ public class Document {
     private Document izquierda;
     private int fe;
     private double priority;
+    private Document pFirst;
+    private Document pLast;
+    private Document pNext;
+    private int Lsize;
 
     /**
      * Constructor
@@ -178,6 +182,14 @@ public class Document {
         }
     }
 
+    public int getLsize() {
+        return Lsize;
+    }
+
+    public void setLsize(int Lsize) {
+        this.Lsize = Lsize;
+    }
+    
     public int altura(Document n) {
         return (Math.max(obtenerFe(n.getIzquierda()), obtenerFe(n.getDerecha())) + 1);
     }
@@ -319,4 +331,60 @@ public class Document {
             return nodosCompletos(n.getIzquierda())+ nodosCompletos(n.getDerecha());      
         }
     }
-}
+
+    public Document getpFirst() {
+        return pFirst;
+    }
+
+    public void setpFirst(Document pFirst) {
+        this.pFirst = pFirst;
+    }
+
+    public Document getpLast() {
+        return pLast;
+    }
+
+    public void setpLast(Document pLast) {
+        this.pLast = pLast;
+    }
+
+    public Document getpNext() {
+        return pNext;
+    }
+
+    public void setpNext(Document pNext) {
+        this.pNext = pNext;
+    }
+      /**
+     * Metodo que agrega un nodo al inicio de la lista
+     *
+     * @param newNodo
+     */
+    public void addAtTheStart(Document newNodo) {
+        if (this.isEmpty()) {
+            pFirst = pLast = newNodo;
+        } else {
+            newNodo.setpNext(getpFirst());
+            setpFirst(newNodo);
+        }
+        Lsize++;
+    }
+       public boolean isEmpty() {
+        return pFirst == null;
+    }
+        public void addAtTheEnd(Document user) {
+        if (this.isEmpty()) {
+           this. pFirst = pLast = user;
+        } else {
+            pLast.setpNext(user);
+            pLast = user;
+        }
+        Lsize++;
+    }
+        public void empty() {
+        this.pFirst = null;
+        this.pLast = null;
+        this.size = 0;
+    }
+}   
+
