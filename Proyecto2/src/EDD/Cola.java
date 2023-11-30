@@ -10,8 +10,8 @@ package EDD;
  */
 public class Cola {
     
-    private Nodo head;
-    private Nodo tail;
+    private Document head;
+    private Document tail;
     private int size;
 
     /**
@@ -47,23 +47,36 @@ public class Cola {
         } else if (getSize() == 1){
             this.empty();
         } else {
+            Document elim=getHead();
             setHead(getHead().getpNext());
             setSize(getSize() - 1);
+            elim.setpNext(null);
         }
     }
-    
     /**
      * Para encolar
      * @param nuevo 
      */
-    public void queue(Nodo nuevo){
+    public void queue(Document nuevo){
         if (this.isEmpty()){
-            setHead(tail = nuevo);
+            setHead(nuevo);
+            
         } else {
             getTail().setpNext(nuevo);
-            setTail(nuevo);
+            
         }
+        setTail(nuevo);
         setSize(getSize() + 1);
+    }
+    
+    public Document getDoc(){
+        if(this.isEmpty()) {
+            return null;
+        }else{
+            return getHead();
+        }
+        
+        
     }
     
     /**
@@ -74,9 +87,9 @@ public class Cola {
         if (!this.isEmpty()){
             String printQueue = "";
             for (int i = 0; i < getSize(); i++){
-                Nodo actual = getHead();
+                Document actual = getHead();
                 dequeue();
-                printQueue += actual.getElement() + ",";
+                printQueue += actual.getName()+ ",";
                 queue(actual);
             }
             return printQueue;
@@ -87,28 +100,28 @@ public class Cola {
     /**
      * @return the head
      */
-    public Nodo getHead() {
+    public Document getHead() {
         return head;
     }
 
     /**
      * @param head the head to set
      */
-    public void setHead(Nodo head) {
+    public void setHead(Document head) {
         this.head = head;
     }
 
     /**
      * @return the tail
      */
-    public Nodo getTail() {
+    public Document getTail() {
         return tail;
     }
 
     /**
      * @param tail the tail to set
      */
-    public void setTail(Nodo tail) {
+    public void setTail(Document tail) {
         this.tail = tail;
     }
 

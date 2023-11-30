@@ -18,6 +18,9 @@ public class Document {
     private Document izquierda;
     private int fe;
     private double priority;
+    private Document pNext;
+    private Document head;
+    private Document tail;
 
     /**
      * Constructor
@@ -36,6 +39,10 @@ public class Document {
         this.izquierda = null;
         this.fe = 0;
         this.priority = priority;
+        this.pNext=null;
+        this.head=null;
+        this.tail=null;
+        
     }
 
     /**
@@ -218,17 +225,22 @@ public class Document {
 
     public Document insertar(Document doc) {
         if (doc == null) {
+            getHead().queue(doc);
             return doc;
         }
         if (doc.getSize() < this.getSize()) {
             if (this.getIzquierda() == null) {
                 this.setIzquierda(doc);
+                setHead(doc);
+                
             } else {
+                
                 this.getIzquierda().insertar(doc);
             }
         } else {
             if (this.getDerecha() == null) {
                 this.setDerecha(doc);
+                setTail(doc);
             } else {
                 this.getDerecha().insertar(doc);
             }
@@ -305,7 +317,7 @@ public class Document {
         Document n2 = q;
         return this.priority >= n2.getPriority();
     }
-     
+    
     public int nodosCompletos(Document n){
         if(n==null)
             return 0;
@@ -316,4 +328,71 @@ public class Document {
             return nodosCompletos(n.getIzquierda())+ nodosCompletos(n.getDerecha());      
         }
     }
+    
+    public void queue(Document nuevo){
+        if (this.isEmpty()){
+            setHead(nuevo);
+            
+        } else {
+            getTail().setpNext(nuevo);
+            
+        }
+        setTail(nuevo);
+        setSize(getSize() + 1);
+    }
+    
+    public Document getDoc(){
+        if(this.isEmpty()) {
+            return null;
+        }else{
+            return getHead();
+        }
+        
+        
+    }
+
+    public Document getpNext() {
+        return pNext;
+    }
+
+    public void setpNext(Document pNext) {
+        this.pNext = pNext;
+    }
+
+    public Document getHead() {
+        return head;
+    }
+
+    public void setHead(Document head) {
+        this.head = head;
+    }
+
+    public Document getTail() {
+        return tail;
+    }
+
+    public void setTail(Document tail) {
+        this.tail = tail;
+    }
+    public void empty(){
+        this.setHead(this.tail = null);
+        this.setSize(0);
+    }
+    public boolean isEmpty(){
+        return getHead() == null;
+    }
+    public void dequeue(){
+        if (this.isEmpty()){
+            System.out.println("La cola esta vacia");
+        } else if (getSize() == 1){
+            this.empty();
+        } else {
+            Document elim=getHead();
+            setHead(getHead().getpNext());
+            setSize(getSize() - 1);
+            elim.setpNext(null);
+        }
+    }
+    
+    
 }
