@@ -495,7 +495,7 @@ public class MainMenu extends javax.swing.JFrame {
             arbolito.getNodoRaiz().insertar(doc);
             }
             if (doc.getName().equals(valuedoc)) {
-                documents.removeDoc(valuedoc);
+                
                 break;
             }
             nododoc = nododoc.getpNext();
