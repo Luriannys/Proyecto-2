@@ -35,12 +35,12 @@ public class Lienzo extends JPanel {
             int extra=d.nodosCompletos(d)*(ancho/2);
             g.drawOval(x, y, diametro,diametro);
             g.drawString(String.valueOf(d.getSize()),x+12,y+18);
-            if (d.getIzquierda()!=null){
-                g.drawLine(x+radio, y+radio, x-ancho-extra+radio, y+ancho+radio);
-            }
-            if (d.getDerecha()!=null){
-                g.drawLine(x+radio, y+radio, x-ancho+extra+radio, y+ancho+radio);
-            }
+//            if (d.getIzquierda()!=null){
+//                g.drawLine(x+radio, y+radio, x-ancho-extra+radio, y+ancho+radio);
+//            }
+//            if (d.getDerecha()!=null){
+//                g.drawLine(x+radio, y+radio, x-ancho+extra+radio, y+ancho+radio);
+//            }
             pintar(g,x-ancho-extra,y+ancho,d.getIzquierda());
             pintar(g,x+ancho+extra,y+ancho,d.getDerecha());
 

@@ -269,7 +269,7 @@ public class MainMenu extends javax.swing.JFrame {
         arbolito.getNodoRaiz().insertar(doc3);
         arbolito.getNodoRaiz().insertar(doc4);
         arbolito.getNodoRaiz().insertar(doc5);
-        
+        lien.setObj(arbolito);
         vent.getContentPane().add(lien);
         vent.setDefaultCloseOperation(3);
         vent.setSize(600, 600);
