@@ -125,7 +125,33 @@ public class Lista {
     }
 
     /**
-     * Metodo que elimina un elemento de la lista por nombre
+     * Metodo que busca un elemento por nombre
+     * @param name
+     * @return 
+     */
+     public Nodo search(String name) {
+        Nodo nodo = pFirst;
+        if (!this.isEmpty()) {
+            User data = (User) pFirst.getElement();
+            if (data.getUsuario().equals(name)) {
+                return nodo;
+            } else {
+                while (nodo.getpNext() != null) {
+                    Nodo nodo2 = nodo.getpNext();
+                    User data2 = (User) nodo2.getElement();
+                    if (data2.getUsuario().equals(name)) {
+                        return nodo2;
+                    }
+                    nodo = nodo.getpNext();
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "La lista esta vacia");
+        } return null;
+    }
+    
+    /**
+     * Metodo que elimina un elemento de la lista por nombre en User
      *
      * @param name
      */
@@ -153,6 +179,35 @@ public class Lista {
         }
     }
 
+     /**
+     * Metodo que elimina un elemento de la lista por nombre en Document
+     *
+     * @param name
+     */
+    public void removeDoc(String name) {
+        Nodo nodo = pFirst;
+        if (!this.isEmpty()) {
+            Document data = (Document) pFirst.getElement();
+            if (data.getName().equals(name)) {
+                pFirst = pFirst.getpNext();
+                size--;
+            } else {
+                while (nodo.getpNext() != null) {
+                    Nodo nodo2 = nodo.getpNext();
+                    Document data2 = (Document) nodo2.getElement();
+                    if (data2.getName().equals(name)) {
+                        nodo.setpNext(nodo2.getpNext());
+                        size--;
+                        break;
+                    }
+                    nodo = nodo.getpNext();
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "La lista esta vacia");
+        }
+    }
+    
     /**
      * @return pFirst
      */

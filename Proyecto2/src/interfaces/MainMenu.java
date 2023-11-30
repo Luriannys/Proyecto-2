@@ -18,6 +18,8 @@ import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 import resources.ManejoArchivo;
@@ -29,6 +31,7 @@ import resources.ManejoArchivo;
 public class MainMenu extends javax.swing.JFrame {
 
     DefaultTableModel table = new DefaultTableModel();
+    DefaultTableModel tabledoc = new DefaultTableModel();
     public Lista data = new Lista();
     public Lista carga = new Lista();
 
@@ -58,6 +61,18 @@ public class MainMenu extends javax.swing.JFrame {
         };
         Thread thread = new Thread(runnable);
         thread.start();
+
+        tableUsers.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            public void valueChanged(ListSelectionEvent event) {
+                if (!event.getValueIsAdjusting()) {
+                    int selectedRow = tableUsers.getSelectedRow();
+                    if (selectedRow >= 0) {
+                        updateTableDoc();
+                    }
+                }
+            }
+        });
+
     }
 
     /**
@@ -71,7 +86,6 @@ public class MainMenu extends javax.swing.JFrame {
 
         background = new javax.swing.JPanel();
         image = new javax.swing.JLabel();
-        cerrar = new javax.swing.JButton();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         Usuarios = new javax.swing.JPanel();
         cargar = new javax.swing.JButton();
@@ -80,8 +94,13 @@ public class MainMenu extends javax.swing.JFrame {
         deleteUser = new javax.swing.JButton();
         addUser = new javax.swing.JButton();
         help = new javax.swing.JButton();
+        delDoc = new javax.swing.JButton();
+        addDoc = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tableDoc = new javax.swing.JTable();
         ColaImpresion = new javax.swing.JPanel();
         verArbol = new javax.swing.JButton();
+        cerrar = new javax.swing.JButton();
         tagWatch = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -92,34 +111,26 @@ public class MainMenu extends javax.swing.JFrame {
         image.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/_6b327199-1d6b-4bdc-add3-314a4fe511b4.jpeg"))); // NOI18N
         background.add(image, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 0, 240, 20));
 
-        cerrar.setText("Cerrar");
-        cerrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cerrarActionPerformed(evt);
-            }
-        });
-        background.add(cerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 400, -1, -1));
-
         Usuarios.setBackground(new java.awt.Color(94, 105, 116));
         Usuarios.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        cargar.setText("Cargar");
+        cargar.setText("Cargar Usuarios");
         cargar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cargarActionPerformed(evt);
             }
         });
-        Usuarios.add(cargar, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 370, -1, -1));
+        Usuarios.add(cargar, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 230, -1, -1));
 
         tableUsers.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
             },
             new String [] {
-                "Usuarios", "Prioridad", "Documentos"
+                "Usuarios", "Prioridad"
             }
         ));
         jScrollPane1.setViewportView(tableUsers);
@@ -132,7 +143,7 @@ public class MainMenu extends javax.swing.JFrame {
                 deleteUserActionPerformed(evt);
             }
         });
-        Usuarios.add(deleteUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 330, -1, -1));
+        Usuarios.add(deleteUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 310, -1, -1));
 
         addUser.setText("Agregar Usuario");
         addUser.addActionListener(new java.awt.event.ActionListener() {
@@ -140,7 +151,7 @@ public class MainMenu extends javax.swing.JFrame {
                 addUserActionPerformed(evt);
             }
         });
-        Usuarios.add(addUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 290, -1, -1));
+        Usuarios.add(addUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 270, -1, -1));
 
         help.setText("Ayuda");
         help.addActionListener(new java.awt.event.ActionListener() {
@@ -149,6 +160,37 @@ public class MainMenu extends javax.swing.JFrame {
             }
         });
         Usuarios.add(help, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 400, -1, -1));
+
+        delDoc.setText("Eliminar documento");
+        delDoc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                delDocActionPerformed(evt);
+            }
+        });
+        Usuarios.add(delDoc, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 390, -1, -1));
+
+        addDoc.setText("Agregar documento");
+        addDoc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addDocActionPerformed(evt);
+            }
+        });
+        Usuarios.add(addDoc, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 350, -1, -1));
+
+        tableDoc.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "Nombre de documento", "Tipo de archivo", "Tiempo"
+            }
+        ));
+        jScrollPane2.setViewportView(tableDoc);
+
+        Usuarios.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 170, 330, 90));
 
         jTabbedPane1.addTab("Usuarios", Usuarios);
 
@@ -167,6 +209,14 @@ public class MainMenu extends javax.swing.JFrame {
 
         background.add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 490, 460));
         jTabbedPane1.getAccessibleContext().setAccessibleName("Usuarios");
+
+        cerrar.setText("Cerrar");
+        cerrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cerrarActionPerformed(evt);
+            }
+        });
+        background.add(cerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 400, -1, -1));
 
         tagWatch.setFont(new java.awt.Font("Algerian", 0, 36)); // NOI18N
         tagWatch.setForeground(new java.awt.Color(255, 255, 255));
@@ -226,18 +276,18 @@ public class MainMenu extends javax.swing.JFrame {
      */
     public void updateTable() {
         table.setRowCount(0); //Vacia la tabla
-        String ids[] = {"Usuarios", "Prioridad", "Documentos"}; //Identificadores de columnas
+        String ids[] = {"Usuarios", "Prioridad"}; //Identificadores de columnas
         table.setColumnIdentifiers(ids);
         tableUsers.setModel(table);
         if (!data.isEmpty()) {
             Nodo nodo;
             nodo = data.getpFirst();
             for (int i = 0; i < data.getSize(); i++) {
-                String info[] = new String[3];
+                String info[] = new String[2];
                 User element = (User) nodo.getElement();
                 info[0] = element.getUsuario();
                 info[1] = element.getTipo();
-                info[2] = data.printString();
+//                info[2] = data.printString();
                 table.addRow(info);
                 nodo = nodo.getpNext();
             }
@@ -261,17 +311,17 @@ public class MainMenu extends javax.swing.JFrame {
      * @param evt
      */
     private void verArbolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verArbolActionPerformed
-        Lienzo lien=new Lienzo();
-        JFrame vent=new JFrame();
-        ArbolTDA arbolito= new ArbolTDA();
-        Controlador contrl=new Controlador(lien,arbolito);
-        
-        Document doc = new Document("R",10,"Alta");
-        Document doc1 = new Document("a",5,"Alta");
-        Document doc2 = new Document("b",13,"Alta");
-        Document doc3 = new Document("c",1,"Alta");
-        Document doc4 = new Document("d",6,"Alta");
-        Document doc5 = new Document("e",17,"Alta");
+        Lienzo lien = new Lienzo();
+        JFrame vent = new JFrame();
+        ArbolTDA arbolito = new ArbolTDA();
+        Controlador contrl = new Controlador(lien, arbolito);
+
+        Document doc = new Document("R", 10, "Alta");
+        Document doc1 = new Document("a", 5, "Alta");
+        Document doc2 = new Document("b", 13, "Alta");
+        Document doc3 = new Document("c", 1, "Alta");
+        Document doc4 = new Document("d", 6, "Alta");
+        Document doc5 = new Document("e", 17, "Alta");
         arbolito.setNodoRaiz(doc);
         arbolito.getNodoRaiz().insertar(doc1);
         arbolito.getNodoRaiz().insertar(doc2);
@@ -317,8 +367,87 @@ public class MainMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_deleteUserActionPerformed
 
     private void helpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_helpActionPerformed
-         JOptionPane.showMessageDialog(null, "¡Bienvenido!\nPara cargar usuarios desde un archivo .csv presione 'Cargar'\nPara agregar usuarios individualmente presione 'Agregar Usuario'\nPara eliminar un usuario de la lista seleccione la fila y presione 'Eliminar Usuario'");
+        JOptionPane.showMessageDialog(null, "¡Bienvenido!\nPara cargar usuarios desde un archivo .csv presione 'Cargar'\nPara agregar usuarios individualmente presione 'Agregar Usuario'\nPara eliminar un usuario de la lista seleccione la fila y presione 'Eliminar Usuario'");
     }//GEN-LAST:event_helpActionPerformed
+
+    private void delDocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delDocActionPerformed
+         int selectedRow = tableUsers.getSelectedRow();
+        String value = (String) tableUsers.getValueAt(selectedRow, 0);
+        Nodo nodoUser;
+        nodoUser = data.search(value);
+        User user;
+        user = (User) nodoUser.getElement();
+        Lista documents;
+        documents = user.getDocumentos();
+        int selectedRowdoc = tableDoc.getSelectedRow();
+        String valuedoc = (String) tableDoc.getValueAt(selectedRowdoc, 0);
+        tabledoc.removeRow(selectedRowdoc);
+        Nodo nododoc = documents.getpFirst();
+        for (int i = 0; i < documents.getSize(); i++) {
+            Document doc = (Document) nododoc.getElement();
+            if (doc.getName().equals(valuedoc)) {
+                documents.removeDoc(valuedoc);
+                break;
+            }
+            nododoc = nododoc.getpNext();
+        }
+    }//GEN-LAST:event_delDocActionPerformed
+
+    /**
+     * Boton "Agregar documento"
+     * @param evt 
+     */
+    private void addDocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addDocActionPerformed
+        int selectedRow = tableUsers.getSelectedRow();
+        String value = (String) tableUsers.getValueAt(selectedRow, 0);
+        String namedoc = JOptionPane.showInputDialog("Nombre de documento: ");
+        String[] type = {"PDF", "Word", "Txt", "Excel", "Csv", "PowerPoint", "Otro"}; // Opciones de JComboBox
+        JComboBox electionType = new JComboBox(type);
+        String typeDoc = (String) JOptionPane.showInputDialog(null, "Tipo de archivo:", "Elegir", JOptionPane.QUESTION_MESSAGE, null, type, type[0]);
+        int size = Integer.parseInt(JOptionPane.showInputDialog("Numero de paginas: "));
+        Document doc = new Document(namedoc, size, typeDoc);
+        Nodo nodo = new Nodo(doc);
+        Nodo nodoUser;
+        nodoUser = data.search(value);
+        User user;
+        user = (User) nodoUser.getElement();
+        user.getDocumentos().addAtTheStart(nodo);
+        updateTableDoc();
+    }//GEN-LAST:event_addDocActionPerformed
+
+    /**
+     * Actualizar tabla de documentos
+     */
+    public void updateTableDoc() {
+        int selectedRow = tableUsers.getSelectedRow();
+        String value = (String) tableUsers.getValueAt(selectedRow, 0);
+        Nodo nodoUser;
+        nodoUser = data.search(value);
+        User user;
+        user = (User) nodoUser.getElement();
+        Lista documents;
+        documents = user.getDocumentos();
+        tabledoc.setRowCount(0); //Vacia la tabla
+        String ids[] = {"Nombre de documento", "Tipo de archivo", "Tiempo"}; //Identificadores de columnas
+        tabledoc.setColumnIdentifiers(ids);
+        tableDoc.setModel(tabledoc);
+        if (!documents.isEmpty()) {
+            Nodo nodo;
+            nodo = documents.getpFirst();
+            for (int i = 0; i < documents.getSize(); i++) {
+                String info[] = new String[3];
+                Document element = (Document) nodo.getElement();
+                info[0] = element.getName();
+                info[1] = element.getType();
+                info[2] = Integer.toString(element.getSize());
+                tabledoc.addRow(info);
+                nodo = nodo.getpNext();
+            }
+        } else {
+            String message[] = {"No hay documentos"};
+            tabledoc.addRow(message);
+        }
+    }
 
     /**
      * getCarga
@@ -382,15 +511,19 @@ public class MainMenu extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel ColaImpresion;
     private javax.swing.JPanel Usuarios;
+    private javax.swing.JButton addDoc;
     private javax.swing.JButton addUser;
     private javax.swing.JPanel background;
     private javax.swing.JButton cargar;
     private javax.swing.JButton cerrar;
+    private javax.swing.JButton delDoc;
     private javax.swing.JButton deleteUser;
     private javax.swing.JButton help;
     private javax.swing.JLabel image;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTable tableDoc;
     private javax.swing.JTable tableUsers;
     private javax.swing.JLabel tagWatch;
     private javax.swing.JButton verArbol;
